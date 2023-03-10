@@ -8,7 +8,7 @@ Why keep this to myself, there are three ways to create your _own_ MIT license p
 2.  Make a request to the API (details below)
 3.  Fork this project and send a pull request
 
-Now I can always include <https://rem.mit-license.org> in all my projects which links `rem` (the CNAME) against my copyright holder name `Remy Sharp` - all stored in the `users` directory.
+Now I can always include <https://z4dev.mit-license.org> in all my projects which links `rem` (the CNAME) against my copyright holder name `Zack Hatimi` - all stored in the `users` directory.
 
 ## Requesting your own MIT license page
 
@@ -17,7 +17,7 @@ The simplest way to create your own MIT license page is to use the self-service 
 You can fork this project, send me a pull request and wait for me to pull (which I'll do as quickly as possible) or if the user is still available you can do it yourself from the command line:
 
 ```bash
-curl -d'{ "copyright": "Remy Sharp" }' https://rem.mit-license.org
+curl -d'{ "copyright": "Zack Hatimi" }' https://z4dev.mit-license.org
 ```
 
 If the `rem` user isn't taken already, then this will create the new user file on the fly and the URL will be immediately available.
@@ -25,19 +25,19 @@ If the `rem` user isn't taken already, then this will create the new user file o
 You can send a full JSON file to the API, not _just_ the copyright, so this works too:
 
 ```bash
-curl -d'{ "copyright": "Remy Sharp", "url": "https://remysharp.com", "email": "me@mysite.com", "format": "txt" }' https://rem.mit-license.org
+curl -d'{ "copyright": "Zack Hatimi", "url": "https://remysharp.com", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
 ```
 
 Whilst the command above sends the data as a string which will later be parsed, you can explicitly specify a JSON `Content-Type`:
 
 ```bash
-curl -H 'Content-Type: application/json' -d'{ "copyright": "Remy Sharp", "url": "https://remysharp.com", "email": "me@mysite.com", "format": "txt" }' https://rem.mit-license.org
+curl -H 'Content-Type: application/json' -d'{ "copyright": "Zack Hatimi", "url": "https://remysharp.com", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
 ```
 
 You can also encode the data as URL query parameters like so:
 
 ```bash
-curl -X POST "https://rem.mit-license.org/?copyright=Remy%20Sharp&url=http%3A%2F%2Fremysharp.com&email=me%40mysite.com&format=txt"
+curl -X POST "https://z4dev.mit-license.org/?copyright=Remy%20Sharp&url=http%3A%2F%2Fremysharp.com&email=me%40mysite.com&format=txt"
 ```
 
 If there are any problems in the automated creation, send me a pull request and it'll go live soon after.
@@ -64,23 +64,23 @@ Create a new file and give it the name of the CNAME you want (in my case it's `r
 
 ```json
 {
-  "copyright": "Remy Sharp, https://remysharp.com"
+  "copyright": "Zack Hatimi, https://remysharp.com"
 }
 ```
 
-Means I can now link to <https://rem.mit-license.org> and it will show my license name (note that the date will always show the current year).
+Means I can now link to <https://z4dev.mit-license.org> and it will show my license name (note that the date will always show the current year).
 
 You can also use an array to hold multiple copyright holders:
 
 ```json
 {
-  "copyright": ["Remy Sharp", "Richie Bendall"]
+  "copyright": ["Zack Hatimi", "Richie Bendall"]
 }
 ```
 
 Which will be formatted as:
 
-    Remy Sharp and Richie Bendall
+    Zack Hatimi and Richie Bendall
 
 If you additionally want to include a URL and email with each copyright holder, use objects in the array:
 
@@ -88,7 +88,7 @@ If you additionally want to include a URL and email with each copyright holder, 
 {
   "copyright": [
     {
-      "name": "Remy Sharp, https://remysharp.com",
+      "name": "Zack Hatimi, https://remysharp.com",
       "url": "https://remysharp.com",
       "email": "remy@remysharp.com"
     },
@@ -107,7 +107,7 @@ In addition to the `copyright` property, if you want to make a link from the cop
 
 ```json
 {
-  "copyright": "Remy Sharp, https://remysharp.com",
+  "copyright": "Zack Hatimi, https://remysharp.com",
   "url": "https://remysharp.com"
 }
 ```
@@ -118,7 +118,7 @@ You can also include a link to your email which is displayed after the copyright
 
 ```json
 {
-  "copyright": "Remy Sharp, https://remysharp.com",
+  "copyright": "Zack Hatimi, https://remysharp.com",
   "url": "https://remysharp.com",
   "email": "me@mysite.com"
 }
@@ -130,7 +130,7 @@ And if you want your license to appear as plain text, just add the `format` prop
 
 ```json
 {
-  "copyright": "Remy Sharp, https://remysharp.com",
+  "copyright": "Zack Hatimi, https://remysharp.com",
   "url": "https://remysharp.com",
   "format": "txt"
 }
@@ -142,7 +142,7 @@ And if you want to show your gravatar, just add the `gravatar` boolean property:
 
 ```json
 {
-  "copyright": "Remy Sharp, https://remysharp.com",
+  "copyright": "Zack Hatimi, https://remysharp.com",
   "url": "https://remysharp.com",
   "email": "me@mysite.com",
   "gravatar": true
@@ -159,7 +159,7 @@ To use a theme, add the `theme` property to your `user.json` file, for example:
 
 ```json
 {
-  "copyright": "Remy Sharp, https://remysharp.com",
+  "copyright": "Zack Hatimi, https://remysharp.com",
   "url": "https://remysharp.com",
   "theme": "flesch"
 }
@@ -241,29 +241,29 @@ To use a theme, add the `theme` property to your `user.json` file, for example:
 
 The following types of requests can be made to this project:
 
-* <https://rem.mit-license.org/> HTML, or the default format specified in
+* <https://z4dev.mit-license.org/> HTML, or the default format specified in
     the json file (currently none specified on `rem`)
-* <https://rem.mit-license.org/license.html> HTML
-* <https://rem.mit-license.org/license.txt> Text
+* <https://z4dev.mit-license.org/license.html> HTML
+* <https://z4dev.mit-license.org/license.txt> Text
 
 The URL also supports including a start year:
 
-* <https://rem.mit-license.org/2009/> will
+* <https://z4dev.mit-license.org/2009/> will
     show a license year range of 2009-2016 (2016 being the current year)
-* <https://rem.mit-license.org/2009-2010>
+* <https://z4dev.mit-license.org/2009-2010>
     allows me to force the year range
-* <https://rem.mit-license.org/2009-2010/license.txt> year range of 2009-2010 in plain text
+* <https://z4dev.mit-license.org/2009-2010/license.txt> year range of 2009-2010 in plain text
 
 You can also specify either the `MIT` or `ISC` license in the URL:
 
-* <https://rem.mit-license.org/+MIT> will
+* <https://z4dev.mit-license.org/+MIT> will
     show the MIT License (default)
-* <https://rem.mit-license.org/+ISC>
+* <https://z4dev.mit-license.org/+ISC>
     shows the ISC license instead
 
 Finally, the URL also supports pinning the year
 
-* <https://rem.mit-license.org/@2009>
+* <https://z4dev.mit-license.org/@2009>
     this is useful for when your software copyright should expire ([as discussed here](https://github.com/remy/mit-license/issues/771))
 
 ## Ways to contribute
@@ -338,4 +338,4 @@ I'm a developer, I seem only capable of _grey_! If you're a designer and want to
 
 And of course:
 
-MIT: <https://rem.mit-license.org>
+MIT: <https://z4dev.mit-license.org>
