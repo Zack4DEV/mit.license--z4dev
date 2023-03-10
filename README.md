@@ -25,13 +25,13 @@ If the `rem` user isn't taken already, then this will create the new user file o
 You can send a full JSON file to the API, not _just_ the copyright, so this works too:
 
 ```bash
-curl -d'{ "copyright": "Zack Hatimi", "url": "https://remysharp.com", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
+curl -d'{ "copyright": "Zack Hatimi", "url": "", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
 ```
 
 Whilst the command above sends the data as a string which will later be parsed, you can explicitly specify a JSON `Content-Type`:
 
 ```bash
-curl -H 'Content-Type: application/json' -d'{ "copyright": "Zack Hatimi", "url": "https://remysharp.com", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
+curl -H 'Content-Type: application/json' -d'{ "copyright": "Zack Hatimi", "url": "", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
 ```
 
 You can also encode the data as URL query parameters like so:
@@ -64,7 +64,7 @@ Create a new file and give it the name of the CNAME you want (in my case it's `r
 
 ```json
 {
-  "copyright": "Zack Hatimi, https://remysharp.com"
+  "copyright": "Zack Hatimi, "
 }
 ```
 
@@ -88,8 +88,8 @@ If you additionally want to include a URL and email with each copyright holder, 
 {
   "copyright": [
     {
-      "name": "Zack Hatimi, https://remysharp.com",
-      "url": "https://remysharp.com",
+      "name": "Zack Hatimi, ",
+      "url": "",
       "email": "remy@remysharp.com"
     },
     {
@@ -107,8 +107,8 @@ In addition to the `copyright` property, if you want to make a link from the cop
 
 ```json
 {
-  "copyright": "Zack Hatimi, https://remysharp.com",
-  "url": "https://remysharp.com"
+  "copyright": "Zack Hatimi, ",
+  "url": ""
 }
 ```
 
@@ -118,8 +118,8 @@ You can also include a link to your email which is displayed after the copyright
 
 ```json
 {
-  "copyright": "Zack Hatimi, https://remysharp.com",
-  "url": "https://remysharp.com",
+  "copyright": "Zack Hatimi, ",
+  "url": "",
   "email": "me@mysite.com"
 }
 ```
@@ -130,8 +130,8 @@ And if you want your license to appear as plain text, just add the `format` prop
 
 ```json
 {
-  "copyright": "Zack Hatimi, https://remysharp.com",
-  "url": "https://remysharp.com",
+  "copyright": "Zack Hatimi, ",
+  "url": "",
   "format": "txt"
 }
 ```
@@ -142,8 +142,8 @@ And if you want to show your gravatar, just add the `gravatar` boolean property:
 
 ```json
 {
-  "copyright": "Zack Hatimi, https://remysharp.com",
-  "url": "https://remysharp.com",
+  "copyright": "Zack Hatimi, ",
+  "url": "",
   "email": "me@mysite.com",
   "gravatar": true
 }
@@ -159,8 +159,8 @@ To use a theme, add the `theme` property to your `user.json` file, for example:
 
 ```json
 {
-  "copyright": "Zack Hatimi, https://remysharp.com",
-  "url": "https://remysharp.com",
+  "copyright": "Zack Hatimi, ",
+  "url": "",
   "theme": "flesch"
 }
 ```
