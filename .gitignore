@@ -1,3 +1,6 @@
+# .json Rather Self
+users/*.json
+
 # Yarn lock file
 yarn.lock
 
