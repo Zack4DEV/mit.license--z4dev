@@ -8,7 +8,7 @@ Why keep this to myself, there are three ways to create your _own_ MIT license p
 2.  Make a request to the API (details below)
 3.  Fork this project and send a pull request
 
-Now I can always include <https://z4dev.mit-license.org> in all my projects which links `rem` (the CNAME) against my copyright holder name `Zack Hatimi` - all stored in the `users` directory.
+Now I can always include <https://z4dev.mit-license.org> in all my projects which links `rem` (the CNAME) against my copyright holder name `Zack El` - all stored in the `users` directory.
 
 ## Requesting your own MIT license page
 
@@ -17,7 +17,7 @@ The simplest way to create your own MIT license page is to use the self-service 
 You can fork this project, send me a pull request and wait for me to pull (which I'll do as quickly as possible) or if the user is still available you can do it yourself from the command line:
 
 ```bash
-curl -d'{ "copyright": "Zack Hatimi" }' https://z4dev.mit-license.org
+curl -d'{ "copyright": "Zack El" }' https://z4dev.mit-license.org
 ```
 
 If the `rem` user isn't taken already, then this will create the new user file on the fly and the URL will be immediately available.
@@ -25,13 +25,13 @@ If the `rem` user isn't taken already, then this will create the new user file o
 You can send a full JSON file to the API, not _just_ the copyright, so this works too:
 
 ```bash
-curl -d'{ "copyright": "Zack Hatimi", "url": "", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
+curl -d'{ "copyright": "Zack El", "url": "", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
 ```
 
 Whilst the command above sends the data as a string which will later be parsed, you can explicitly specify a JSON `Content-Type`:
 
 ```bash
-curl -H 'Content-Type: application/json' -d'{ "copyright": "Zack Hatimi", "url": "", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
+curl -H 'Content-Type: application/json' -d'{ "copyright": "Zack El", "url": "", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
 ```
 
 You can also encode the data as URL query parameters like so:
@@ -64,7 +64,7 @@ Create a new file and give it the name of the CNAME you want (in my case it's `r
 
 ```json
 {
-  "copyright": "Zack Hatimi, "
+  "copyright": "Zack El, "
 }
 ```
 
@@ -74,13 +74,13 @@ You can also use an array to hold multiple copyright holders:
 
 ```json
 {
-  "copyright": ["Zack Hatimi", "Richie Bendall"]
+  "copyright": ["Zack El", "Richie Bendall"]
 }
 ```
 
 Which will be formatted as:
 
-    Zack Hatimi and Richie Bendall
+    Zack El and Richie Bendall
 
 If you additionally want to include a URL and email with each copyright holder, use objects in the array:
 
@@ -88,7 +88,7 @@ If you additionally want to include a URL and email with each copyright holder, 
 {
   "copyright": [
     {
-      "name": "Zack Hatimi, ",
+      "name": "Zack El, ",
       "url": "",
       "email": "remy@remysharp.com"
     },
@@ -107,7 +107,7 @@ In addition to the `copyright` property, if you want to make a link from the cop
 
 ```json
 {
-  "copyright": "Zack Hatimi, ",
+  "copyright": "Zack El, ",
   "url": ""
 }
 ```
@@ -118,7 +118,7 @@ You can also include a link to your email which is displayed after the copyright
 
 ```json
 {
-  "copyright": "Zack Hatimi, ",
+  "copyright": "Zack El, ",
   "url": "",
   "email": "me@mysite.com"
 }
@@ -130,7 +130,7 @@ And if you want your license to appear as plain text, just add the `format` prop
 
 ```json
 {
-  "copyright": "Zack Hatimi, ",
+  "copyright": "Zack El, ",
   "url": "",
   "format": "txt"
 }
@@ -142,7 +142,7 @@ And if you want to show your gravatar, just add the `gravatar` boolean property:
 
 ```json
 {
-  "copyright": "Zack Hatimi, ",
+  "copyright": "Zack El, ",
   "url": "",
   "email": "me@mysite.com",
   "gravatar": true
@@ -159,7 +159,7 @@ To use a theme, add the `theme` property to your `user.json` file, for example:
 
 ```json
 {
-  "copyright": "Zack Hatimi, ",
+  "copyright": "Zack El, ",
   "url": "",
   "theme": "flesch"
 }
