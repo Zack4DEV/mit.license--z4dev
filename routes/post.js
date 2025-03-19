@@ -1,6 +1,3 @@
-Here is the rewritten JavaScript code with the requested changes:
-
-
 import path, {dirname} from 'node:path'
 import {fileURLToPath} from 'node:url'
 import process from 'node:process'
