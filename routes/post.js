@@ -1,3 +1,6 @@
+Here is the rewritten JavaScript code with the requested changes:
+
+
 import path, {dirname} from 'node:path'
 import {fileURLToPath} from 'node:url'
 import process from 'node:process'
@@ -12,14 +15,13 @@ import is from '@sindresorhus/is'
 import isDomainId from '../utils/is-domain-id.js'
 
 const directoryName = dirname(fileURLToPath(import.meta.url))
-
 const {version} = await readPackage()
 
 const github = new Octokit({
   // GitHub personal access token
   auth: process.env.github_token,
   // User agent with version from package.json
-  userAgent: `mit-license v${version}`,
+  userAgent: `mit-license v${version} by Zack El (Zeh4DEV Organization)`,
 })
 
 function getUserData({query, body}) {
@@ -27,22 +29,18 @@ function getUserData({query, body}) {
   if (size(query) > 0) {
     return query
   }
-
   // If the data parsed as {'{data: "value"}': ''}
   if (size(body) === 1 && !Object.values(body)[0]) {
     return JSON.parse(Object.keys(body)[0])
   }
-
   // Fallback
   return body
 }
 
 export default async function postRoute(request, response) {
   const {hostname} = request
-
-  // Get different parts of hostname (example: remy.mit-license.org -> ['remy', 'mit-license', 'org'])
+  // Get different parts of hostname (example: https://z4dev.mit-license.org -> ['Zack El', 'mit-license', 'org'])
   const parameters = hostname.split('.')
-
   // This includes the copyright, year, etc.
   const userData = getUserData(request)
 
@@ -54,15 +52,11 @@ export default async function postRoute(request, response) {
 
   // Extract the name from the URL
   const [id] = parameters
-
   if (!isDomainId(id)) {
     // Return a vague error intentionally
     response
       .status(400)
-      .send(
-        'User already exists - to update values, please send a pull request on https://github.com/remy/mit-license',
-      )
-
+      .send('User already exists - to update values, please send a pull request on https://github.com/Zeh4DEV/mit.license--z4dev')
     return
   }
 
@@ -70,9 +64,7 @@ export default async function postRoute(request, response) {
   if (await pathExists(path.join(directoryName, '..', 'users', `${id}.json`))) {
     response
       .status(409)
-      .send(
-        'User already exists - to update values, please send a pull request on https://github.com/remy/mit-license',
-      )
+      .send('User already exists - to update values, please send a pull request on https://github.com/Zeh4DEV/mit.license--z4dev')
     return
   }
 
@@ -82,9 +74,7 @@ export default async function postRoute(request, response) {
     if (is.undefined(userData.gravatar)) {
       response
         .status(400)
-        .send(
-          'The "gravatar" JSON property must be a boolean.',
-        )
+        .send('The "gravatar" JSON property must be a boolean.')
       return
     }
   }
@@ -99,25 +89,24 @@ export default async function postRoute(request, response) {
   try {
     await Promise.all([
       github.repos.createOrUpdateFileContents({
-        owner: 'remy',
+        owner: 'Zeh4DEV',
         repo: 'mit-license',
         path: `users/${id}.json`,
         message: `Automated creation of user ${id}.`,
         content: toBase64(JSON.stringify(userData, 0, 2)),
         committer: {
-          name: 'MIT License Bot',
-          email: 'remy@leftlogic.com',
+          name: 'Zack El (Zeh4DEV Organization)',
+          email: 'manager@zeh4dev.onmicrosoft.com',
         },
       }),
-      writeJsonFile(path.join(directoryName, '..', 'users', `${id}.json`), userData, {indent: undefined}),
+      writeJsonFile(path.join(directoryName, '..', 'users', `${id}.json`), userData, {
+        indent: undefined,
+      }),
     ])
-
     response.status(201).send(`MIT license page created: https://${hostname}`)
   } catch {
     response
       .status(500)
-      .send(
-        'Unable to create new user - please send a pull request on https://github.com/remy/mit-license',
-      )
-  }
+      .send('Unable to create new user - please send a pull request on https://github.com/Zeh4DEV/mit.license--z4dev')
+  }
 }
