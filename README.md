@@ -1,96 +1,102 @@
 # A permalink for your MIT License
 
-I always forget to add a `LICENSE` file to my projects, so I wanted to link to a single resource that would always be up to date and would always have my details online.
+I always forget to add a LICENSE file to my projects, so I wanted to link to a single resource that would always be up to date and would always have my details online.
 
-Why keep this to myself, there are three ways to create your _own_ MIT license page:
+Why keep this to myself?
+There are three ways to create your own MIT license page:
 
-1.  Use the generator tool (easiest)
-2.  Make a request to the API (details below)
-3.  Fork this project and send a pull request
+1. Use the generator tool (easiest)
+2. Make a request to the API (details below)
+3. Fork this project and send a pull request
 
-Now I can always include <https://z4dev.mit-license.org> in all my projects which links `rem` (the CNAME) against my copyright holder name `Zack El` - all stored in the `users` directory.
+Now I can always include https://z4dev.mit-license.org/ in all my projects which links zack (the CNAME) against my copyright holder name Zack El - all stored in the users directory.
 
 ## Requesting your own MIT license page
+The simplest way to create your own MIT license page is to use the self-service generator found https://richienb.github.io/mit-license-generator.
 
-The simplest way to create your own MIT license page is to use the self-service generator found [here](https://richienb.github.io/mit-license-generator).
-
+### Using the API
 You can fork this project, send me a pull request and wait for me to pull (which I'll do as quickly as possible) or if the user is still available you can do it yourself from the command line:
 
-```bash
+
+bash
 curl -d'{ "copyright": "Zack El" }' https://z4dev.mit-license.org
-```
 
-If the `rem` user isn't taken already, then this will create the new user file on the fly and the URL will be immediately available.
 
-You can send a full JSON file to the API, not _just_ the copyright, so this works too:
+If the zack user isn't taken already, then this will create the new user file on the fly and the URL will be immediately available.
 
-```bash
-curl -d'{ "copyright": "Zack El", "url": "", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
-```
+You can send a full JSON file to the API, not just the copyright, so this works too:
 
-Whilst the command above sends the data as a string which will later be parsed, you can explicitly specify a JSON `Content-Type`:
 
-```bash
-curl -H 'Content-Type: application/json' -d'{ "copyright": "Zack El", "url": "", "email": "me@mysite.com", "format": "txt" }' https://z4dev.mit-license.org
-```
+bash
+curl -d'{ "copyright": "Zack El", "url": "https://github.com/Zack4DEV", "email": "73597675+Zack4DEV@users.noreply.github.com", "format": "txt" }' https://z4dev.mit-license.org
+
+
+Whilst the command above sends the data as a string which will later be parsed, you can explicitly specify a JSON Content-Type:
+
+
+bash
+curl -H 'Content-Type: application/json' -d'{ "copyright": "Zack El", "url": "https://github.com/Zack4DEV", "email": "73597675+Zack4DEV@users.noreply.github.com", "format": "txt" }' https://z4dev.mit-license.org
+
 
 You can also encode the data as URL query parameters like so:
 
-```bash
-curl -X POST "https://z4dev.mit-license.org/?copyright=Remy%20Sharp&url=http%3A%2F%2Fremysharp.com&email=me%40mysite.com&format=txt"
-```
+
+bash
+curl -X POST "https://z4dev.mit-license.org/?copyright=Zack%20El&url=http%3A%2F%2Felhatimizakaria.link&email=73597675+Zack4DEV%40users.noreply.github.com&format=txt"
+
 
 If there are any problems in the automated creation, send me a pull request and it'll go live soon after.
 
-Equally, if you need to update the user file to include more details that you didn't initially include (extra fields in the next section) you will need to send a pull request on that `user.json` file via GitHub.
+Equally, if you need to update the user file to include more details that you didn't initially include (extra fields in the next section) you will need to send a pull request on that user.json file via GitHub.
 
-## The user.json file
+The user.json file
+The users directory contains a list of files, each representing a host on mit-license.org.
 
-The `users` directory contains a list of files, each representing a host on mit-license.org. The minimum requirement for the JSON is that it contains a `copyright` field - everything else is optional. Remember to ensure the `user.json` file is [valid JSON](https://jsonlint.com/).
+The minimum requizackent for the JSON is that it contains a copyright field - everything else is optional.
 
-Available fields:
+zackember to ensure the user.json file is https://jsonlint.com/.
 
-* copyright (required)
-* URL
-* email
-* format
-* gravatar
-* theme
-* license
+## Available fields
+- copyright (required)
+- url
+- email
+- format
+- gravatar
+- theme
+- license
 
 ### copyright
+Create a new file and give it the name of the CNAME you want (in my case it's zack.json).
 
-Create a new file and give it the name of the CNAME you want (in my case it's `rem.json`). This file contains a JSON object containing at least a `copyright` property:
+This file contains a JSON object containing at least a copyright property:
 
-```json
+
 {
-  "copyright": "Zack El, "
+  "copyright": "Zack El"
 }
-```
 
-Means I can now link to <https://z4dev.mit-license.org> and it will show my license name (note that the date will always show the current year).
+
+Means I can now link to https://z4dev.mit-license.org/ and it will show my license name (note that the date will always show the current year).
 
 You can also use an array to hold multiple copyright holders:
 
-```json
+
 {
   "copyright": ["Zack El", "Richie Bendall"]
 }
-```
 
-Which will be formatted as:
 
-    Zack El and Richie Bendall
+Which will be formatted as: Zack El and Richie Bendall
 
 If you additionally want to include a URL and email with each copyright holder, use objects in the array:
 
-```json
+
 {
   "copyright": [
     {
-      "name": "Zack El, ",
-      "url": "",
-      "email": "remy@remysharp.com"
+      "name": "Zack El",
+      "url": "https://github.com/Zack4DEV",
+      "email": "73597675+Zack4DEV@users.noreply.github.com"
     },
     {
       "name": "Richie Bendall, https://www.richie-bendall.ml",
@@ -99,30 +105,20 @@ If you additionally want to include a URL and email with each copyright holder, 
     }
   ]
 }
-```
+
 
 ### url
+In addition to the copyright property, if you want to make a link from the copyright text, you can include a URL property:
 
-In addition to the `copyright` property, if you want to make a link from the copyright text, you can include a `URL` property:
 
-```json
 {
-  "copyright": "Zack El, ",
-  "url": ""
+  "copyright": "Zack El",
+  "url": "https://github.com/Zack4DEV"
 }
-```
+
 
 ### email
-
-You can also include a link to your email which is displayed after the copyright notice using the `email` property (note the `mailto:` is automatically added):
-
-```json
-{
-  "copyright": "Zack El, ",
-  "url": "",
-  "email": "me@mysite.com"
-}
-```
+You can also include a link to your email which is displayed after the copyright
 
 ### format
 
@@ -131,7 +127,7 @@ And if you want your license to appear as plain text, just add the `format` prop
 ```json
 {
   "copyright": "Zack El, ",
-  "url": "",
+  "url": "https://github.com/Zack4DEV",
   "format": "txt"
 }
 ```
@@ -143,8 +139,8 @@ And if you want to show your gravatar, just add the `gravatar` boolean property:
 ```json
 {
   "copyright": "Zack El, ",
-  "url": "",
-  "email": "me@mysite.com",
+  "url": "https://github.com/Zack4DEV",
+  "email": "73597675+Zack4DEV@users.noreply.github.com",
   "gravatar": true
 }
 ```
@@ -160,7 +156,7 @@ To use a theme, add the `theme` property to your `user.json` file, for example:
 ```json
 {
   "copyright": "Zack El, ",
-  "url": "",
+  "url": "https://github.com/Zack4DEV",
   "theme": "flesch"
 }
 ```
